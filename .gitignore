@@ -14,5 +14,5 @@ wheels/
 
 # Node
 web/node_modules/
-web/dist/
+# web/dist is committed so non-devs can run with Python only
 

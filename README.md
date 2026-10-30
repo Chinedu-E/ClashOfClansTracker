@@ -23,43 +23,25 @@ Personal Clash of Clans dashboard: paste your village export, sync the official 
   <img src="docs/screenshots/battle-lytics.jpg" alt="Battle analytics" width="800"/>
 </p>
 
+## Run (no Node required)
 
-## Requirements
+Needs **Python 3.10+**.
 
-- Python 3.10+
-- Node.js 18+
-- Clash of Clans [developer API key](https://developer.clashofclans.com/) (allowlist your public IP)
+1. Download or clone this repo
+2. Optional — for official API features, create a `.env` file:
 
-## Install
+   ```
+   API_KEY=your_token_here
+   ```
 
-```bash
-git clone <your-repo-url>
-cd coc
+   Get a key at [developer.clashofclans.com](https://developer.clashofclans.com/) and allowlist your public IP. Village export works without a key.
 
-# API key
-echo 'API_KEY=your_token_here' > .env
+3. Start the app:
+   - **macOS:** double-click `start.command` (right-click → Open the first time if macOS blocks it)
+   - **Windows:** double-click `start.bat`
+   - **Or terminal:** `python3 server.py --open`
 
-# Web deps
-cd web && npm install && cd ..
-```
-
-Optional — refresh upgrade costs after a game update:
-
-```bash
-python3 scripts/sync_game_data.py
-```
-
-## Run
-
-```bash
-# Terminal 1 — API proxy
-python3 server.py
-
-# Terminal 2 — dashboard
-cd web && npm run dev
-```
-
-Open **http://127.0.0.1:5173**.
+Opens **http://127.0.0.1:8787**. Leave the terminal window open while using the dashboard.
 
 ## Usage
 
@@ -67,6 +49,30 @@ Open **http://127.0.0.1:5173**.
 2. Paste into the dashboard
 3. (Optional) enter current storages so “affordable” badges work
 4. Re-paste after starting/finishing upgrades so timers stay accurate
+
+## Develop
+
+For live UI reload you still need Node 18+:
+
+```bash
+# Terminal 1 — API + static (or API only)
+python3 server.py
+
+# Terminal 2 — Vite
+cd web && npm install && npm run dev
+```
+
+Open **http://127.0.0.1:5173**. After UI changes, rebuild for the one-click app:
+
+```bash
+cd web && npm run build
+```
+
+Optional — refresh upgrade costs after a game update:
+
+```bash
+python3 scripts/sync_game_data.py
+```
 
 ## Notes
 
